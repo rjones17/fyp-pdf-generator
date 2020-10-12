@@ -5,7 +5,7 @@ from PyPDF2 import PdfFileReader, PdfFileWriter
 
 # input = PdfFileReader(open('Google.html', 'rb')) # Will not work, cannot read html stream
 
-input = PdfFileReader(open("Operating_Systems_From_0_to_1.pdf", 'rb'))
+input = PdfFileReader(open("pypdf2-test.pdf", 'rb'))
 output = PdfFileWriter()
 
 print("input has %d pages" % input.getNumPages())
