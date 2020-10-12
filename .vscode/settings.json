@@ -1,0 +1,7 @@
+{
+    "python.pythonPath": "C:\\Users\\ryanj\\.virtualenvs\\library_demos-s7mDP-jF\\Scripts\\python.exe",
+    "python.formatting.autopep8Path": "C:\\Users\\ryanj\\.virtualenvs\\library_demos-s7mDP-jF\\Scripts\\autopep8.exe",
+    "python.autoComplete.extraPaths": [
+        "C:\\Users\ryanj\\.virtualenvs\\library_demos-s7mDP-jF\\Lib\\site-packages"
+    ]
+}
