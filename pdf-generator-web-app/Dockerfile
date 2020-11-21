@@ -6,11 +6,12 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUBUFFERED 1
 
 # Work Dir
-WORKDIR /code/
+RUN mkdir /src
+WORKDIR /src
 
 # Dependencies
-COPY Pipfile Pipfile.lock /code/
+COPY Pipfile Pipfile.lock /src/
 RUN pip install pipenv && pipenv install --system
 
 # COPY
-COPY . /code/
+COPY ./src /src
