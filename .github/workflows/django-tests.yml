@@ -37,7 +37,11 @@ jobs:
           python-version: 3.8.6
       - name: Run Tests
         run: |
+          pwd
+          ls
           pip install pipenv
           pipenv install
-          cd /home/runner/work/fyp-pdf-generator/fyp-pdf-generator/src
+          pwd
+          ls
+          cd /home/runner/work/fyp-pdf-generator/fyp-pdf-generator/
           pipenv run python manage.py test PDFGen/
