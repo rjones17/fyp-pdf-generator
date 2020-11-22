@@ -39,4 +39,5 @@ jobs:
         run: |
           pip install pipenv
           pipenv install
-          pipenv run python src/manage.py test src/PDFGen/
+          cd /home/runner/work/fyp-pdf-generator/fyp-pdf-generator/src
+          pipenv run python manage.py test PDFGen/
