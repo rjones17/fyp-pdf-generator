@@ -1,0 +1,41 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  run_tests:
+    if: github.ref == 'refs/heads/master'
+    name: Run Django Tests
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: postgres:13-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: --mount type=tmpfs,destination=/var/lib/postgresql/data --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        with:
+          ref: 'refs/heads/master'
+      - name: Set up Python 3.8.6
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8.6
+      - name: Install dependencies
+        run: pip install pipenv && pipenv install --system
+      - name: Run tests
+        run: pipenv shell && python pdf-generator-web-app/src/manage.py test pdf-generator-web-app/src/PDFGen/
