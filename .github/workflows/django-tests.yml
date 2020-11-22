@@ -38,4 +38,4 @@ jobs:
       - name: Install dependencies
         run: pip install pipenv && pipenv install
       - name: Run tests
-        run: python pdf-generator-web-app/src/manage.py test pdf-generator-web-app/src/PDFGen/
+        run: pipenv run python pdf-generator-web-app/src/manage.py test pdf-generator-web-app/src/PDFGen/
