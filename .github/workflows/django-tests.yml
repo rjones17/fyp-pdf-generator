@@ -35,7 +35,8 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: 3.8.6
-      - name: Install dependencies
-        run: cd pdf-generator-web-app && pip install pipenv && pipenv install
-      - name: Run tests
-        run: pipenv run python src/manage.py test src/PDFGen/
+      - name: Run Tests
+        run: |
+          pip install pipenv
+          pipenv install
+          pipenv run python src/manage.py test src/PDFGen/
