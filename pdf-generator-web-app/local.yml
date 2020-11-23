@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+    django:
+        build:
+            context: .
+            dockerfile: ./compose/local/django/Dockerfile
+        image: pdf-generator-local-django
+        container_name: django
+        volumes: 
+            - .:/app
+        ports:
+            - "8000:8000"
+        depends_on:
+            - postgres
+        env_file: 
+            - ./.envs/.local/.django
+            - ./.envs/.local/.postgres
+        command: python manage.py runserver 0.0.0.0:8000
+
+    postgres:
+        image: postgres
+        container_name: postgres
+        volumes:
+            - postgres_data:/var/lib/postgresql/data/
+        env_file: 
+            - ./.envs/.local/.postgres
+
+volumes:
+    postgres_data:

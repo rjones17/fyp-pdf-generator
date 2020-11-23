@@ -8,8 +8,13 @@ db.sqlite3
 
 # Visual Studio Code #
 .vscode/
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
 .history
+
+# Mypy
+.mypy_cache/
+
+# My Stuff
+/pdf-generator-web-app/.env
+/pdf-generator-web-app/.envs/*
+!/pdf-generator-web-app/.envs/.local/
+pdfgen/media/
