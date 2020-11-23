@@ -2,6 +2,7 @@
 Base settings
 """
 from pathlib import Path
+from typing import List
 
 import environ
 
@@ -13,7 +14,6 @@ env = environ.Env()
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
 if READ_DOT_ENV_FILE:
     env.read_env(str(ROOT_DIR / ".env"))
-
 
 
 # Admin
@@ -28,19 +28,18 @@ ADMINS = [("""jonesrm2""", "jonesrm2@aston.ac.uk")]
 MANAGERS = ADMINS
 
 
-
 # Apps
 # ------------------------------------------------------------------------------
 DJANGO_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
 ]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS: List[str] = []
 
 LOCAL_APPS = [
     "pdfgen.users.apps.UsersConfig",
@@ -48,7 +47,6 @@ LOCAL_APPS = [
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
-
 
 
 # Authentication
@@ -62,11 +60,10 @@ AUTHENTICATION_BACKENDS = [
 AUTH_USER_MODEL = "users.User"
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-#LOGIN_REDIRECT_URL = "users:redirect"
+# LOGIN_REDIRECT_URL = "users:redirect"
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
-#LOGIN_URL = "account_login"
-
+# LOGIN_URL = "account_login"
 
 
 # Databases
@@ -76,7 +73,6 @@ DATABASES = {"default": env.db("DATABASE_URL")}
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#atomic-requests
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
-
 
 
 # Email
@@ -90,12 +86,10 @@ EMAIL_BACKEND = env(
 EMAIL_TIMEOUT = 5
 
 
-
 # General
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug
 DEBUG = env.bool("DJANGO_DEBUG", False)
-
 
 
 # Internationalization
@@ -104,7 +98,7 @@ DEBUG = env.bool("DJANGO_DEBUG", False)
 LANGUAGE_CODE = "en-us"
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#time-zone
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-i18n
 USE_I18N = True
@@ -119,7 +113,6 @@ USE_TZ = True
 LOCALE_PATHS = [str(ROOT_DIR / "locale")]
 
 
-
 # Media
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-root
@@ -129,20 +122,18 @@ MEDIA_ROOT = str(APPS_DIR / "media")
 MEDIA_URL = "/media/"
 
 
-
 # Middleware
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
-
 
 
 # Passwords
@@ -159,19 +150,18 @@ PASSWORD_HASHERS = [
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
-
 
 
 # Security
@@ -187,7 +177,6 @@ SECURE_BROWSER_XSS_FILTER = True
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#x-frame-options
 X_FRAME_OPTIONS = "DENY"
-
 
 
 # Static
@@ -206,7 +195,6 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
-
 
 
 # Templates
@@ -243,7 +231,6 @@ TEMPLATES = [
 FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 
 
-
 # Urls
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf
@@ -251,4 +238,3 @@ ROOT_URLCONF = "config.urls"
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
 WSGI_APPLICATION = "config.wsgi.application"
-
