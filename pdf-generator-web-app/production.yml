@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+    django:
+        build:
+            context: .
+            dockerfile: ./compose/production/django/Dockerfile
+        image: pdf-generator-production-django
+        volumes: 
+            - ./src:/src
+        ports:
+            - "8000:8000"
+        depends_on:
+            - postgres
+        env_file: 
+            - ./.envs/.production/.django
+            - ./.envs/.production/.postgres
+        command: python manage.py migrate && python manage.py runserver 0.0.0.0:8000
+
+    postgres:
+        image: pdf-generator-production-postgres
+        volumes:
+            - production_postgres_data:/var/lib/postgresql/data/
+        env_file: 
+            - ./.envs/.production/.postgres
+
+volumes:
+    production_postgres_data:
