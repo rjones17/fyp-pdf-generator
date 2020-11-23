@@ -13,7 +13,7 @@ class User(AbstractUser):
         """Get url for user's detail view.
 
         Returns:
-            str: URL for user detail.
+            str: URL for user detail testing.
 
         """
         return reverse("users:detail", kwargs={"username": self.username})

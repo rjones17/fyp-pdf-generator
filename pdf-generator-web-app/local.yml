@@ -26,5 +26,21 @@ services:
         env_file: 
             - ./.envs/.local/.postgres
 
+    docs:
+        build:
+            context: .
+            dockerfile: ./compose/local/docs/Dockerfile
+        image: pdf-generator-local-docs
+        container_name: docs
+        env_file:
+            - ./.envs/.local/.django
+        volumes:
+            - ./docs:/docs
+            - ./config:/app/config
+            - ./pdfgen:/app/pdfgen
+        ports:
+            - "7000:7000"
+        command: make livehtml
+
 volumes:
     postgres_data:
